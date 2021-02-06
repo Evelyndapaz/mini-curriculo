@@ -1,0 +1,287 @@
+/* soft reset do css- remove estilos aplicados pelo browser*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../img/geometric.jpg');
+  background-size: auto 100vh; 
+  font-family: 'Source Code Pro', monospace;
+  height: 100vh;
+  font-size: 12px;
+}
+
+/* se a tela tiver pelo menos 400px vai carregar estes estilos */
+@media (min-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* breakpoint: servem para fazer com que o site se ajuste com o tamanho da tela */
+@media (min-width: 600px) {
+  body {
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 18px;
+  }
+}
+
+/* breakpoint */
+@media (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  background-color: black;
+  font-family: 'Chakra Petch', sans-serif;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 1;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu li {
+ list-style: none; 
+}
+
+.menu a {
+  display: block;
+  padding: 10px 20px;
+  transition: background-color 1s, color 1s;
+}
+
+/*efeitos para a:active-> quando ativamos o elemento*/
+/*efeitos para a:hover-> quando passamos o mouse em cima*/
+.menu a:active,
+.menu a:hover {
+  background-color: purple;
+  color: whitesmoke;
+}
+
+a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+/* animação do titulo*/
+.titulo {
+  transform: scale(0.2) translateY(50vh);
+  opacity: 0;
+  animation: 1s ease 500ms animacaoTitulo forwards;
+}
+
+@keyframes animacaoTitulo {
+  from {
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.site-subtitle, 
+.site-title {
+  color: black;
+  text-align: center;
+}
+
+.site-title {
+  font-size: 3.5em;
+  font-family: 'Jura', sans-serif;
+}
+
+.site-subtitle {
+ font-style: italic;
+ font-family: 'Chakra Petch', sans-serif;
+ line-height: 1.8em;
+}
+
+/*adicionei um background-color com o rgba definidos para transparência*/
+.sobre,
+.contato,
+.portfolio {
+  padding: 2em;
+  min-height: 100vh;
+  background-color: rgba(248, 188, 248, 0.5);
+}
+
+/*configuração do container para alinhar o conteudo corretamente na página*/
+@media (min-width: 1200px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+  }
+}
+
+/*config dos subtitulos*/
+.sobre h2,
+.contato h2,
+.portfolio h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  color: black;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  font-size: 2em;
+}
+
+/*configuração do paragrafo -sobre*/
+.sobre p {
+  color: black;
+  text-indent: 1.4em;
+  margin-bottom: 1.4em;
+  text-align: justify;
+}
+
+/*configuração do link da alura */
+.sobre a {
+  color: darkmagenta;
+  text-decoration: underline;
+}
+
+/*efeito para quando o mouse passar por cima*/
+.sobre a:hover {
+  background-color: rgb(103, 204, 250);
+  text-decoration: none;
+  color: purple;
+}
+
+/*Config da foto da section -sobre. Porcentagem para recortes em formatos geometricos de fotos no site: https://bennettfeely.com/clippy/*/
+.sobre .avatar {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+  margin-left: 2em;
+}
+
+@media (min-width: 600px) {
+  .sobre .avatar {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+    float: right;
+  }
+}
+
+/*configuração das grids/grades*/
+.portfolio .grid {
+  display: grid;
+  gap: 2em;
+}
+
+@media (min-width: 560px) {
+  .portfolio .grid {
+    grid-template-columns: 240px 240px;
+  }
+}
+
+@media (min-width: 880px) {
+  .portfolio .grid {
+    grid-template-columns: repeat(3, 260px);
+    align-content: center;
+    justify-content: center;
+    height: calc(100vh - 8em - 48px);
+  }
+}
+
+/*configuração das imagens da section-portifolio*/
+.flip-card {
+  height: 180px;
+  perspective: 1000px;
+}
+
+.flip-card:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 3s;
+}
+
+.card-front, 
+.card-back {
+  backface-visibility: hidden;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, .7);
+  height: 180px;
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+.portfolio figure {
+  text-align: center;
+}
+
+.img-portfolio {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  object-position: left bottom;
+  transition: transform 500ms;
+}
+
+/*configuração da section - contato*/
+.contato .icons {
+  text-align: center;
+}
+
+.contato a {
+  color: black;
+  font-size: 3em;
+  transition: text-shadow 1s;
+}
+
+.contato a:active,
+.contato a:hover  {
+  text-decoration: none;
+  text-shadow: 0px 0px 30px rgba(49, 2, 87, 0.747);
+}
+
+/*animação de cores nas letras*/
+.fim {
+  margin-top: 1.5em;
+  font-size: 35px;
+  text-align: center;
+  animation-name: fim;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fim {
+  0% {
+    color: magenta;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: orange;
+  }
+}
+
